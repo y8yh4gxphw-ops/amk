@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<title>KFZ Prüfung</title>
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#000000" />
+<link rel="stylesheet" href="style.css" />
+<link rel="apple-touch-icon" href="icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="KFZ Prüfung" />
+</head>
+<body>
+<div id="toolbar" role="navigation" aria-label="App Navigation">
+  <select id="navDropdown" aria-label="Navigation">
+    <option value="">⤴︎ Navigation</option>
+    <option value="start">Hauptbildschirm</option>
+    <option value="question">Prüfung</option>
+    <option value="menu">Einstellungen</option>
+    <option value="result">Ergebnis</option>
+    <option value="history">Verlauf</option>
+  </select>
+  <div class="switchRow"><label for="modeSelect">Modus</label>
+    <select id="modeSelect">
+      <option value="test">Testmodus</option>
+      <option value="exam">Prüfungsmodus</option>
+    </select>
+  </div>
+</div>
+<div id="app">
+    <section id="startScreen" class="screen active">
+        <h1 class="title">KFZ Meisterprüfung</h1>
+        <button id="startBtn" class="mainButton">Prüfung beginnen</button>
+        <button id="openMenu" class="menuButton">⚙️ Menü</button>
+    </section>
+    <section id="menuScreen" class="screen">
+        <h2>Einstellungen</h2>
+        <div class="switchRow"><label>Dark Mode</label><input type="checkbox" id="darkModeSwitch" /></div>
+        <div class="switchRow"><label>Tabellen-Lösungsmodus</label><input type="checkbox" id="solutionSwitch" /></div>
+        <div class="switchRow"><label>☆Dev Mode</label><input type="checkbox" id="devModeSwitch" /></div>
+        <button id="backBtn">Zurück</button>
+    </section>
+    <section id="questionScreen" class="screen">
+        <h2 id="questionNumber"></h2>
+        <p id="questionText"></p>
+        <img id="questionImage" class="qImage" />
+        <div id="answerContainer"></div>
+        <div id="feedback" aria-live="polite"></div>
+        <button id="nextBtn" class="mainButton">Weiter</button>
+    </section>
+    <section id="resultScreen" class="screen">
+        <h2>Ergebnis</h2>
+        <p id="scoreText"></p>
+        <div id="reviewContainer"></div>
+        <button id="restartBtn">Neu starten</button>
+    
+    </section>
+    <section id="historyScreen" class="screen">
+        <h2>Verlauf</h2>
+        <div id="historyContent"></div>
+        <div class="historyActions">
+            <button id="exportHistoryBtn">Verlauf exportieren</button>
+            <button id="clearHistoryBtn">Verlauf löschen</button>
+        </div>
+    
+</div>
+<script src="questions.js"></script>
+<script src="script.js"></script>
+<script src="augment.js"></script>
+<script> if ("serviceWorker" in navigator) { navigator.serviceWorker.register("sw.js"); } </script>
+</body>
+</html>
